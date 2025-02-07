@@ -14,6 +14,10 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { ProjectManagerComponent } from './pages/project-manager/project-manager.component';
 import { KanbanBoardComponent } from './pages/kanban-board/kanban-board.component';
 import { TaskComponent } from './components/task/task.component';
+import { AddTaskComponent } from './pages/add-task/add-task.component';
+import { EditTaskComponent } from './pages/edit-task/edit-task.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 
 @NgModule({
   declarations: [
@@ -25,13 +29,16 @@ import { TaskComponent } from './components/task/task.component';
     AdminComponent,
     ProjectManagerComponent,
     KanbanBoardComponent,
-    TaskComponent
+    TaskComponent,
+    AddTaskComponent,
+    EditTaskComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule, 
     FormsModule,
+    DragDropModule,
     StoreModule.forRoot({}, {})
   ],
   providers: [],

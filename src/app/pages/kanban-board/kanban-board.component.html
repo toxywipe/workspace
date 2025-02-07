@@ -1,26 +1,72 @@
-<div class="kanban-board">
-    <div class="kanban-column">
-      <h3>Todo</h3>
-      <app-task
-        *ngFor="let task of todoTasks"
-        [task]="task"
-      ></app-task>
+<div class="container mt-5">
+    <h2 class="text-center mb-4 text-primary">Tableau Kanban</h2>
+
+    <div class="text-center mb-3">
+        <button class="btn btn-primary" style="background-color: #6D9EEB; border-color: #6D9EEB;" (click)="navigateToAddTask()">
+            Ajouter une tâche
+        </button>
     </div>
-  
-    <div class="kanban-column">
-      <h3>In Progress</h3>
-      <app-task
-        *ngFor="let task of inProgressTasks"
-        [task]="task"
-      ></app-task>
+
+    <div class="row">
+        <!-- Colonne "À faire" -->
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-header bg-light">
+                    <h4 class="text-primary">À faire</h4>
+                </div>
+                <div class="card-body">
+                    <div cdkDropList [cdkDropListData]="tasks.Todo" [cdkDropListConnectedTo]="['InProgressList', 'DoneList']"
+                        (cdkDropListDropped)="drop($event, TaskStatus.Todo)">
+                        <div *ngFor="let task of tasks.Todo" class="list-group-item" cdkDrag>
+                            <h5>{{ task.title }}</h5>
+                            <p>{{ task.description }}</p>
+                            <button class="btn btn-secondary btn-sm me-2">Modifier</button>
+                            <button class="btn btn-danger btn-sm" style="background-color: #E57373; border-color: #E57373;" (click)="deleteTask(task.id)">Supprimer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Colonne "En cours" -->
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-header bg-light">
+                    <h4 class="text-warning">En cours</h4>
+                </div>
+                <div class="card-body">
+                    <div cdkDropList #InProgressList [cdkDropListData]="tasks['In Progress']" [cdkDropListConnectedTo]="['TodoList', 'DoneList']"
+                        (cdkDropListDropped)="drop($event, TaskStatus.InProgress)">
+                        <div *ngFor="let task of tasks['In Progress']" class="list-group-item" cdkDrag>
+                            <h5>{{ task.title }}</h5>
+                            <p>{{ task.description }}</p>
+                            <button class="btn btn-secondary btn-sm me-2">Modifier</button>
+                            <button class="btn btn-danger btn-sm" style="background-color: #E57373; border-color: #E57373;" (click)="deleteTask(task.id)">Supprimer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Colonne "Terminé" -->
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-header bg-light">
+                    <h4 class="text-success">Terminé</h4>
+                </div>
+                <div class="card-body">
+                    <div cdkDropList #DoneList [cdkDropListData]="tasks.Done" [cdkDropListConnectedTo]="['TodoList', 'InProgressList']"
+                        (cdkDropListDropped)="drop($event, TaskStatus.Done)">
+                        <div *ngFor="let task of tasks.Done" class="list-group-item" cdkDrag>
+                            <h5>{{ task.title }}</h5>
+                            <p>{{ task.description }}</p>
+                            <button class="btn btn-secondary btn-sm me-2">Modifier</button>
+                            <button class="btn btn-danger btn-sm" style="background-color: #E57373; border-color: #E57373;" (click)="deleteTask(task.id)">Supprimer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  
-    <div class="kanban-column">
-      <h3>Done</h3>
-      <app-task
-        *ngFor="let task of doneTasks"
-        [task]="task"
-      ></app-task>
-    </div>
-  </div>
-  
+    
+</div>

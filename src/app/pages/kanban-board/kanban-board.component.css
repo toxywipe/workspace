@@ -1,13 +1,74 @@
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Kanban Board */
 .kanban-board {
     display: flex;
-    gap: 16px;
-  }
-  
-  .kanban-column {
-    flex: 1;
-    padding: 16px;
-    background-color: #f5f5f5;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
+    justify-content: space-between;
+    gap: 15px;
+}
+
+/* Colonnes */
+.kanban-column {
+    width: 32%;
+    background: #F8F9FA; /* Couleur douce */
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.kanban-column:hover {
+    transform: scale(1.01);
+}
+
+/* Titres */
+.kanban-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Liste des tâches */
+.kanban-list {
+    min-height: 300px;
+    padding: 10px;
+}
+
+/* Tâches */
+.kanban-item {
+    background: white;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Animation et hover */
+.kanban-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Icônes d'actions */
+.task-icons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.task-icons i {
+    transition: color 0.2s ease;
+}
+
+.task-icons i:hover {
+    color: #6D9EEB; /* Bleu pastel pour le hover */
+}

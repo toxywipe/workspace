@@ -17,20 +17,30 @@ export class TaskService {
     this.storageService.setItem(this.storageKey, tasks);
   }
 
-  // Récupérer toutes les tâches d'un projet
+  // Récupérer les tâches d’un projet
   getTasksByProject(projectId: string): Task[] {
     return this.storageService.getItem<Task[]>(this.storageKey)?.filter(task => task.projectId === projectId) || [];
   }
 
-  // Mettre à jour le statut d'une tâche
-  updateTaskStatus(taskId: string, newStatus: TaskStatus): void {
+  // Modifier une tâche
+  updateTask(updatedTask: Task): void {
     const tasks = this.storageService.getItem<Task[]>(this.storageKey) || [];
-    const task = tasks.find(t => t.id === taskId);
-    if (task) {
-      task.status = newStatus;
+    const index = tasks.findIndex(task => task.id === updatedTask.id);
+    if (index !== -1) {
+      tasks[index] = updatedTask;
       this.storageService.setItem(this.storageKey, tasks);
     }
   }
+
+  getTasks(): Task[] {
+    return this.storageService.getItem<Task[]>('tasks') || [];
+  }
+
+  getTaskById(taskId: string): Task | undefined {
+    const tasks = this.getTasks();
+    return tasks.find(task => task.id === taskId);
+  }
+
 
   // Supprimer une tâche
   deleteTask(taskId: string): void {
