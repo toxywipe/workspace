@@ -8,6 +8,15 @@
       <li class="nav-item" *ngIf="isAuthenticated">
         <a class="nav-link" routerLink="/dashboard">Tableau de bord</a>
       </li>
+      <li class="nav-item" *ngIf="isAdmin">
+        <a class="nav-link text-warning fw-bold" routerLink="/admin">Administration</a>
+      </li>
+      <li class="nav-item" *ngIf="isAdmin || isProjectLead">
+        <a class="nav-link" routerLink="/projects">Projets</a>
+      </li>
+      <li class="nav-item" *ngIf="isAuthenticated">
+        <a class="nav-link" routerLink="/kanban">Kanban</a>
+      </li>      
       <li class="nav-item" *ngIf="!isAuthenticated">
         <a class="nav-link" routerLink="/login">Connexion</a>
       </li>

@@ -1,0 +1,26 @@
+<div class="kanban-board">
+    <div class="kanban-column">
+      <h3>Todo</h3>
+      <app-task
+        *ngFor="let task of todoTasks"
+        [task]="task"
+      ></app-task>
+    </div>
+  
+    <div class="kanban-column">
+      <h3>In Progress</h3>
+      <app-task
+        *ngFor="let task of inProgressTasks"
+        [task]="task"
+      ></app-task>
+    </div>
+  
+    <div class="kanban-column">
+      <h3>Done</h3>
+      <app-task
+        *ngFor="let task of doneTasks"
+        [task]="task"
+      ></app-task>
+    </div>
+  </div>
+  

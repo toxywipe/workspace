@@ -1,0 +1,27 @@
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Mode affichage centré */
+.single-column .row {
+    display: flex;
+    justify-content: center;
+}
+
+/* Mode affichage en deux colonnes */
+.two-columns .row {
+    display: flex;
+}
+
+/* Ajuste l'espace entre les colonnes */
+.two-columns .col-md-6 {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Activer un projet sélectionné */
+.list-group-item.active {
+    background-color: #6D9EEB;
+    color: white;
+    font-weight: bold;
+}

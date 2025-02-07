@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { RoleService } from 'src/app/services/role.service';
+import { Roles } from 'src/models/roles';
 
 @Component({
   selector: 'app-navbar',
@@ -9,13 +11,17 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
   isAuthenticated = false;
+  isAdmin = false;
+  isProjectLead = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private roleService: RoleService, private router: Router) {}
 
   ngOnInit(): void {
-    // Écoute des changements d'état d'authentification
+    // Vérifie si l'utilisateur est connecté
     this.authService.isAuthenticated$.subscribe((status) => {
       this.isAuthenticated = status;
+      this.isAdmin = this.roleService.hasRole(Roles.Admin);
+      this.isProjectLead = this.roleService.hasRole(Roles.ProjectLead)
     });
   }
 

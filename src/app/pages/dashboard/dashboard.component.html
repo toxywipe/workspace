@@ -1,5 +1,30 @@
 <div class="container mt-5">
-    <h2>Tableau de bord</h2>
-    <p>Bienvenue dans l’espace de travail : <strong>{{ workspace }}</strong></p>
+  <h2>Tableau de bord</h2>
+  <p>Bienvenue dans l’espace de travail : <strong>{{ workspace }}</strong></p>
+  <p>Votre rôle : <strong>{{ userRole }}</strong></p>
+
+  <!-- Contenu pour les Admins -->
+  <div *ngIf="isAdmin">
+    <h3>Gestion des espaces de travail</h3>
+    <button class="btn btn-primary">Créer un nouvel espace</button>
+  </div>
+
+  <!-- Contenu pour les Project Leads -->
+  <div *ngIf="isProjectLead">
+    <h3>Projets attribués</h3>
+    <p>Vous pouvez gérer vos projets ici.</p>
+  </div>
+
+  <!-- Contenu pour les Développeurs -->
+  <div *ngIf="isDeveloper">
+    <h3>Vos tâches</h3>
+    <p>Voici les tâches qui vous ont été assignées.</p>
+  </div>
+
+  <!-- Contenu pour les Viewers -->
+  <div *ngIf="isViewer">
+    <h3>Vue en lecture seule</h3>
+    <p>Vous pouvez voir les projets mais pas les modifier.</p>
+  </div>
 </div>
-  
+
